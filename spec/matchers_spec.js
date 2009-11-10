@@ -40,6 +40,20 @@ Screw.Unit(function() {
         });
       });
       
+      describe('when actual is a date', function() {
+        it("matches dates that are equal", function() {
+          var bonfire_night = new Date(2009, 10, 5, 0, 0, 0);
+          var guy_fawkes_night = new Date(2009, 10, 5, 0, 0, 0);
+          var christmas = new Date(2009, 11, 25);
+          
+          var equal_test = Screw.Matchers.equal.match(bonfire_night, guy_fawkes_night);
+          expect(equal_test).to(be_true);
+          
+          var not_equal_test = Screw.Matchers.equal.match(guy_fawkes_night, christmas);
+          expect(not_equal_test).to(be_false);
+        });
+      });
+      
       describe('when actual is an array', function() {
         it("matches Arrays with the same elements", function() {
           expect([1, 2, 4]).to(equal, [1, 2, 4]);
